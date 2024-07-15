@@ -1,20 +1,27 @@
-name: aptible
+name: Deploy to Aptible
 
 on:
-  workflow_dispatch: {}
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Deploy to Aptible
-      uses: aptible/aptible-deploy-action@v4
-      with:
-        type: git
-        app: stleech
-        environment: leechst
-        username: ${{ secrets.APTIBLE_USERNAME }}
-        password: ${{ secrets.APTIBLE_PASSWORD }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Aptible
+        uses: quay.io/aptible/aptible-deploy-action@v4
+        with:
+          type: git
+          app: stleech
+          environment: leechst
+          username: ${{ secrets.APTIBLE_USERNAME }}
+          password: ${{ secrets.APTIBLE_PASSWORD }}
+          git_remote: primetime.aptible.com
+          auth_root_url: https://auth.aptible.com
+          api_root_url: https://api.aptible.com
+          aptible_remote: aptible
