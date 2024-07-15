@@ -4,19 +4,19 @@ on:
   push:
     branches: [main]
   workflow_dispatch: {}
-
-jobs:
+  jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: 'refs/heads/deploy'
-    - name: Deploy to Aptible
-      uses: aptible/aptible-deploy-action@v4
-      with:
-        type: git
-        app: stleech
-        environment: leechst
-        username: ${{ secrets.APTIBLE_USERNAME }}
-        password: ${{ secrets.APTIBLE_PASSWORD }}
+      - name: Checkout deploy branch
+        uses: actions/checkout@v2
+        with:
+          ref: 'refs/heads/deploy'
+      - name: Deploy to Aptible
+        uses: aptible/aptible-deploy-action@v4
+        with:
+          type: git
+          app: stleech
+          environment: leechst
+          username: ${{ secrets.APTIBLE_USERNAME }}
+          password: ${{ secrets.APTIBLE_PASSWORD }}
