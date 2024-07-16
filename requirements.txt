@@ -41,4 +41,4 @@ tgcrypto
 uvloop
 xattr
 yt-dlp
-git+https://github.com/5hojib/pyrogram.git@dev
+pyrogram==2.0.30  # replace with a known working version
