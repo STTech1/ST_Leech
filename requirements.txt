@@ -42,3 +42,5 @@ uvloop
 xattr
 yt-dlp
 pyrogram==2.0.30  # replace with a known working version
+git clone https://github.com/pyrogram/pyrogram.git
+cd pyrogram
